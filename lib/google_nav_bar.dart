@@ -109,7 +109,6 @@ class _GNavState extends State<GNav> {
 
 class GButton extends StatefulWidget {
   final bool active;
-  final Widget count;
   final bool debug;
   final double gap;
   final Color iconColor;
@@ -147,8 +146,7 @@ class GButton extends StatefulWidget {
     this.iconSize,
     this.leading,
     this.onPressed,
-    this.backgroundGradient, 
-    this.count = const Text('1'),
+    this.backgroundGradient,
   });
 
   @override
@@ -181,7 +179,6 @@ class _GButtonState extends State<GButton> {
         style: widget.textStyle ??
             TextStyle(fontWeight: FontWeight.w600, color: widget.textColor),
       ),
-      count: widget.count,
     );
   }
 }
@@ -202,7 +199,6 @@ class Button extends StatefulWidget {
     this.active = false,
     this.debug,
     this.gradient,
-    this.count
   }) : super(key: key);
 
   final Widget icon;
@@ -218,7 +214,6 @@ class Button extends StatefulWidget {
   final Duration duration;
   final Curve curve;
   final Gradient gradient;
-  final Widget count;
 
   @override
   _ButtonState createState() => _ButtonState();
@@ -341,12 +336,7 @@ class _ButtonState extends State<Button> with TickerProviderStateMixin {
                           Container(
                               padding: EdgeInsets.symmetric(
                                   vertical: widget.padding.vertical / 2),
-                              child: Column(
-                                children: [
-                                  widget.icon,
-                                  (widget.count!=null) ? widget.count : Container()
-                                ],
-                              )),
+                              child: widget.icon),
                           SizeTransition(
                             axis: Axis.horizontal,
                             axisAlignment: 1,
