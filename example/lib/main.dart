@@ -70,6 +70,7 @@ class _ExampleState extends State<Example> {
                     text: 'Likes',
                   ),
                   GButton(
+                    extraInfo: Text('3'),
                     icon: LineIcons.search,
                     text: 'Search',
                   ),

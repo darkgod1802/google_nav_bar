@@ -77,6 +77,7 @@ class _GNavState extends State<GNav> {
                       textColor: t.textColor ?? widget.activeColor,
                       padding: t.padding ?? widget.padding,
                       textStyle: t.textStyle ?? widget.textStyle,
+                      extraInfo: t.extraInfo,
                       text: t.text,
                       icon: t.icon,
                       leading: t.leading,
@@ -126,6 +127,7 @@ class GButton extends StatefulWidget {
   final Curve curve;
   final Gradient backgroundGradient;
   final Widget leading;
+  final Widget extraInfo;
 
   GButton({
     Key key,
@@ -147,6 +149,7 @@ class GButton extends StatefulWidget {
     this.leading,
     this.onPressed,
     this.backgroundGradient,
+    this.extraInfo
   });
 
   @override
@@ -179,6 +182,7 @@ class _GButtonState extends State<GButton> {
         style: widget.textStyle ??
             TextStyle(fontWeight: FontWeight.w600, color: widget.textColor),
       ),
+      extraInfo: widget.extraInfo,
     );
   }
 }
@@ -198,7 +202,8 @@ class Button extends StatefulWidget {
     this.margin = const EdgeInsets.all(0),
     this.active = false,
     this.debug,
-    this.gradient,
+    this.gradient, 
+    this.extraInfo,
   }) : super(key: key);
 
   final Widget icon;
@@ -214,6 +219,7 @@ class Button extends StatefulWidget {
   final Duration duration;
   final Curve curve;
   final Gradient gradient;
+  final Widget extraInfo;
 
   @override
   _ButtonState createState() => _ButtonState();
@@ -286,8 +292,7 @@ class _ButtonState extends State<Button> with TickerProviderStateMixin {
             Row(
               children: <Widget>[
                 Container(
-                  padding: EdgeInsets.symmetric(
-                      vertical: widget.padding.vertical / 2),
+                  padding: EdgeInsets.symmetric(vertical: widget.padding.vertical / 2),
                   child: widget.icon,
                 ),
               ],
@@ -334,8 +339,8 @@ class _ButtonState extends State<Button> with TickerProviderStateMixin {
                       Row(
                         children: <Widget>[
                           Container(
-                              padding: EdgeInsets.symmetric(
-                                  vertical: widget.padding.vertical / 2),
+                              padding: EdgeInsets.only(
+                                  top: widget.padding.vertical / 2),
                               child: widget.icon),
                           SizeTransition(
                             axis: Axis.horizontal,
@@ -351,7 +356,9 @@ class _ButtonState extends State<Button> with TickerProviderStateMixin {
                             ),
                           ),
                         ],
+                        
                       ),
+                      (widget.extraInfo!=null) ? widget.extraInfo : Container()
                     ],
                   ),
                 ],
