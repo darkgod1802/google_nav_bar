@@ -356,9 +356,8 @@ class _ButtonState extends State<Button> with TickerProviderStateMixin {
                             ),
                           ),
                         ],
-                        
                       ),
-                      (widget.extraInfo!=null) ? widget.extraInfo : Container()
+                      (_expanded)? (widget.extraInfo!=null) ? widget.extraInfo : Container() : Container()
                     ],
                   ),
                 ],
